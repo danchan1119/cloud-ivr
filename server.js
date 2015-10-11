@@ -4,9 +4,30 @@ server.connection({
 	host: process.env.OPENSHIFT_NODEJS_IP || 'localhost',
 	port: process.env.OPENSHIFT_NODEJS_PORT || 3000
 });
-	 
-var routes = require('./routes')(Hapi);
 
+var Mongoose = require('mongoose');
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } }
+
+var db = Mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.on('disconnected', console.error.bind(console, 'disconnected to mongodb'));
+
+try {
+	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs', options);
+	console.log("Connection with database succeeded.");
+} catch (err) {
+	console.log("Sever initialization failed " , err.message);
+}
+
+db.once('open', function callback() {
+	var recordSchema = new Mongoose.Schema({
+		RecordUrl: { type: String },
+		Direction: String
+	});
+});
+
+var routes = require('./routes')(Hapi);
 
 server.route([
 	{

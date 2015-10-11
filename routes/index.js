@@ -2,8 +2,6 @@ var plivo = require('plivo'),
 	Hapi;
 var p = plivo.RestAPI(require('./config'));
 
-var Mongoose = require('mongoose');  
-
 
 module.exports = function(hapi) {
 	Hapi = hapi;
@@ -124,38 +122,20 @@ var getRecording = exports.getRecording = function(request, reply) {
 	console.log(typeof jsonStr);
 	console.log(typeof parsed);
 
-	
-	var db = Mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error'));
-    db.on('disconnected', console.error.bind(console, 'disconnected to mongodb'));
 
-    try {
-    	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
-    	console.log("Connection with database succeeded.");
-    } catch (err) {
-    	console.log("Sever initialization failed " , err.message);
-    }
-
-	db.once('open', function callback() {
-		var recordSchema = new Mongoose.Schema({
-			RecordUrl: { type: String },
-			Direction: String
-		});
-
-		// Compile a 'Record' model using the recordSchema as the structure.
-		var Record = Mongoose.model('Record', recordSchema);
-		var test = new Record({
-			RecordUrl: 'gdg',
-			Direction: 'asd'
-		});
-		test.save(function(err, test) {
-		  if (err) return console.error(err);
-		  console.dir(test);
-		});
-
-	    //console.log(request.payload);
+	// Compile a 'Record' model using the recordSchema as the structure.
+	var Record = Mongoose.model('Record', recordSchema);
+	var test = new Record({
+		RecordUrl: 'gdg',
+		Direction: 'asd'
 	});
-	//Mongoose.disconnect();
+	test.save(function(err, test) {
+	  if (err) return console.error(err);
+	  console.dir(test);
+	});
+
+    //console.log(request.payload);
+	
 
 	var r = plivo.Response();
 	var thank = 'Thank you. Your feedback is very important to us. Goodbye.';
