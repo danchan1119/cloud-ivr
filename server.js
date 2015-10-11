@@ -1,5 +1,10 @@
 var Hapi = require('hapi');
-var server = Hapi.createServer(process.env.OPENSHIFT_NODEJS_IP || 'localhost', process.env.OPENSHIFT_NODEJS_PORT || 3000);
+var server = new Hapi.Server();
+server.connection({
+	host: process.env.OPENSHIFT_NODEJS_IP || 'localhost',
+	port: process.env.OPENSHIFT_NODEJS_PORT || 3000
+});
+	 
 var routes = require('./routes')(Hapi);
 
 
