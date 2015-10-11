@@ -135,7 +135,10 @@ var getRecording = exports.getRecording = function(request, reply) {
 
 		// Compile a 'Record' model using the recordSchema as the structure.
 		var Record = Mongoose.model('Record', recordSchema);
-		var test = new Record(parsed);
+		var test = new Record({
+			RecordUrl: 'gdg',
+			Direction: 'asd'
+		});
 		test.save(function(err, test) {
 		  if (err) return console.error(err);
 		  console.dir(test);
