@@ -124,9 +124,19 @@ var getRecording = exports.getRecording = function(request, reply) {
 	console.log(typeof jsonStr);
 	console.log(typeof parsed);
 
-	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
+	
 	var db = Mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
+    db.on('disconnected', console.error.bind(console, 'disconnected to mongodb'));
+
+    try {
+    	options.server.socketOptions = options.replset.socketOptions = { keepAlive: 1 };
+    	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
+    	console.log("Connection with database succeeded.");
+    } catch (err) {
+    	console.log("Sever initialization failed " , err.message);
+    }
+
 	db.once('open', function callback() {
 		var recordSchema = new Mongoose.Schema({
 			RecordUrl: { type: String },
@@ -144,7 +154,6 @@ var getRecording = exports.getRecording = function(request, reply) {
 		  console.dir(test);
 		});
 
-	    console.log("Connection with database succeeded.");
 	    //console.log(request.payload);
 	});
 	//Mongoose.disconnect();
