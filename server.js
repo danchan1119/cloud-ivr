@@ -31,7 +31,7 @@ server.route([
 	},
 	{
 	  method: '*',
-	  path: '/getRecording/{val?}',
+	  path: '/getRecording',
 	  handler: routes.getRecording
 	},
 	{

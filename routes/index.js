@@ -97,7 +97,7 @@ var record = exports.record = function(request, reply) {
 	var whisper = 'One last question. What is your impression on this I-V-R system? Please speak clearly so we can record your response, press the # key or hang up when you have finished.';
 	var body = "";
 	var params = {
-		action: "http://ivr-orcisurvey.rhcloud.com/getRecording/",
+		action: "http://ivr-orcisurvey.rhcloud.com/getRecording",
 		method: "POST",
 		fileFormat: "mp3",
 		maxLength: 30,
