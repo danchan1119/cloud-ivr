@@ -130,7 +130,6 @@ var getRecording = exports.getRecording = function(request, reply) {
     db.on('disconnected', console.error.bind(console, 'disconnected to mongodb'));
 
     try {
-    	options.server.socketOptions = options.replset.socketOptions = { keepAlive: 1 };
     	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
     	console.log("Connection with database succeeded.");
     } catch (err) {
