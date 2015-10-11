@@ -126,7 +126,6 @@ var getRecording = exports.getRecording = function(request, reply) {
 	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
 	var db = Mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
-    db.close();
 	db.once('open', function callback() {
 		var recordSchema = new Mongoose.Schema({
 			RecordUrl: { type: String },
