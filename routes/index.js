@@ -34,13 +34,13 @@ var init = exports.init = function(request, reply) {
 
 	reply(r.toXML()).type('text/xml');
 	// Test SIP parameter
-  	var obj = {};
-	obj = request.query;
-	var jsonStr = JSON.stringify(obj);
-	var parsed = JSON.parse(jsonStr);
-	var queryStr = parsed.To.split('?')[1];
-	console.log(parsed.To);
-	console.log(queryStr);
+  	//var obj = {};
+	//obj = request.query;
+	//var jsonStr = JSON.stringify(obj);
+	//var parsed = JSON.parse(jsonStr);
+	//var queryStr = parsed.To.split('?')[1];
+	//console.log(parsed.To);
+	//console.log(queryStr);
 };
 
 var press = exports.press = function(request, reply) {
