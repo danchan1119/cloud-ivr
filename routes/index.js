@@ -125,7 +125,8 @@ var getRecording = exports.getRecording = function(request, reply) {
 	console.log(typeof parsed);
 	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
 	var db = Mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error'));  
+    db.on('error', console.error.bind(console, 'connection error'));
+    db.close();
 	db.once('open', function callback() {
 		var recordSchema = new Mongoose.Schema({
 			RecordUrl: { type: String },
@@ -143,6 +144,7 @@ var getRecording = exports.getRecording = function(request, reply) {
 	    console.log("Connection with database succeeded.");
 	    //console.log(request.payload);
 	});
+	db.close();
 
 	var r = plivo.Response();
 	var thank = 'Thank you. Your feedback is very important to us. Goodbye.';
