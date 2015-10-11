@@ -2,7 +2,10 @@ var plivo = require('plivo'),
 	Hapi;
 var p = plivo.RestAPI(require('./config'));
 var Mongoose = require('mongoose');
-
+var recordSchema = new Mongoose.Schema({
+		RecordUrl: { type: String },
+		Direction: String
+	});
 
 module.exports = function(hapi) {
 	Hapi = hapi;
@@ -126,10 +129,7 @@ var getRecording = exports.getRecording = function(request, reply) {
 
 	// Compile a 'Record' model using the recordSchema as the structure.
 	var Record = Mongoose.model('Record', recordSchema);
-	var test = new Record({
-		RecordUrl: 'gdg',
-		Direction: 'asd'
-	});
+	var test = new Record(parsed);
 	test.save(function(err, test) {
 	  if (err) return console.error(err);
 	  console.dir(test);

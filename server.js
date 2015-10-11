@@ -27,10 +27,7 @@ try {
 }
 
 db.once('open', function callback() {
-	var recordSchema = new Mongoose.Schema({
-		RecordUrl: { type: String },
-		Direction: String
-	});
+	
 });
 
 var routes = require('./routes')(Hapi);
