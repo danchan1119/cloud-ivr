@@ -10,6 +10,20 @@ module.exports = function(hapi) {
 	return exports;
 };
 
+var call = exports.call = function(request, reply) {
+	var params = {
+		from: '+85261574234',
+		to: '+85261574234',
+		answer_url:"http://ivr-orcisurvey.rhcloud.com/init",
+		answer_method: "GET"
+	};
+
+	p.make_call(params, function(status, response) {
+		console.log('Status: ', status);
+		console.log('API Response:\n ', response);
+	});
+};
+
 var init = exports.init = function(request, reply) {
 	var r = plivo.Response();
 
@@ -48,7 +62,7 @@ var press = exports.press = function(request, reply) {
 	var press = 'You have pressed ' + request.query.Digits;
 	//var loop = {'loop' : parseInt(request.query.Digits)};
 	var params = {
-		action:"http://ivr-orcisurvey.rhcloud.com/record",
+		action:"http://ivr-orcisurvey.rhcloud.com/record/",
 		method:"GET",
 		timeout:7,
 		numDigits:1,
@@ -77,20 +91,6 @@ var press = exports.press = function(request, reply) {
 	console.log(request.query.Digits);
 };
 
-var call = exports.call = function(request, reply) {
-	var params = {
-		from: '+85261574234',
-		to: '+85261574234',
-		answer_url:"http://ivr-orcisurvey.rhcloud.com/init",
-		answer_method: "GET"
-	};
-
-	p.make_call(params, function(status, response) {
-		console.log('Status: ', status);
-		console.log('API Response:\n ', response);
-	});
-};
-
 var record = exports.record = function(request, reply) {
 	var r = plivo.Response();
 	//var whisper = 'To ensure quality service, your call may be monitored or recorded.';
@@ -98,7 +98,7 @@ var record = exports.record = function(request, reply) {
 	var body = "";
 	var params = {
 		action: "http://ivr-orcisurvey.rhcloud.com/getRecording/",
-		method: "GET",
+		method: "POST",
 		fileFormat: "mp3",
 		maxLength: 30,
 		finishOnKey: '#'
@@ -112,6 +112,7 @@ var record = exports.record = function(request, reply) {
 	//r.addPlay('https://s3.amazonaws.com/plivocloud/Trumpet.mp3');
 
 	reply(r.toXML()).type('text/xml');
+	console.log(request.query.Digits);
 };
 
 var getRecording = exports.getRecording = function(request, reply) {
