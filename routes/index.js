@@ -94,8 +94,7 @@ var press = exports.press = function(request, reply) {
 var record = exports.record = function(request, reply) {
 	var r = plivo.Response();
 	//var whisper = 'To ensure quality service, your call may be monitored or recorded.';
-	var whisper = 'One last question. What is your impression on this I-V-R system? Please speak clearly so we can record your response, press the # key or hang up when you have finished.';
-	var body = "";
+	var whisper = 'One last question. What is your impression on this I-V-R system? Please speak clearly so we can record your response, press the # key when you have finished.';
 	var params = {
 		action: "http://ivr-orcisurvey.rhcloud.com/getRecording",
 		method: "POST",
@@ -124,6 +123,7 @@ var getRecording = exports.getRecording = function(request, reply) {
 	console.log(parsed);
 	console.log(typeof jsonStr);
 	console.log(typeof parsed);
+
 	Mongoose.connect('mongodb://admin:qwert@ds035664.mongolab.com:35664/nodejs');
 	var db = Mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
@@ -144,7 +144,7 @@ var getRecording = exports.getRecording = function(request, reply) {
 	    console.log("Connection with database succeeded.");
 	    //console.log(request.payload);
 	});
-	db.close();
+	Mongoose.disconnect();
 
 	var r = plivo.Response();
 	var thank = 'Thank you. Your feedback is very important to us. Goodbye.';
