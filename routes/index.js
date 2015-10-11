@@ -147,7 +147,7 @@ var getRecording = exports.getRecording = function(request, reply) {
 	    console.log("Connection with database succeeded.");
 	    //console.log(request.payload);
 	});
-	Mongoose.disconnect();
+	//Mongoose.disconnect();
 
 	var r = plivo.Response();
 	var thank = 'Thank you. Your feedback is very important to us. Goodbye.';
