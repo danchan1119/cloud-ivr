@@ -98,7 +98,7 @@ var record = exports.record = function(request, reply) {
 	var body = "";
 	var params = {
 		action: "http://ivr-orcisurvey.rhcloud.com/getRecording/",
-		method: "POST",
+		method: "GET",
 		fileFormat: "mp3",
 		maxLength: 30,
 		finishOnKey: '#'
