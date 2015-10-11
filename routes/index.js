@@ -90,7 +90,7 @@ var press = exports.press = function(request, reply) {
 	g.addSpeak(no);
 
 	reply(r.toXML()).type('text/xml');
-	console.log(request.query.Digits);
+	r1 = request.query.Digits;
 };
 
 var record = exports.record = function(request, reply) {
@@ -113,7 +113,7 @@ var record = exports.record = function(request, reply) {
 	//r.addPlay('https://s3.amazonaws.com/plivocloud/Trumpet.mp3');
 
 	reply(r.toXML()).type('text/xml');
-	console.log(request.query.Digits);
+	r2 = request.query.Digits;
 };
 
 var getRecording = exports.getRecording = function(request, reply) {
@@ -129,7 +129,10 @@ var getRecording = exports.getRecording = function(request, reply) {
 
 	// Compile a 'Record' model using the recordSchema as the structure.
 	var Record = Mongoose.model('Record', recordSchema);
-	var test = new Record(parsed);
+	var test = new Record({
+		RecordUrl: r1,
+		Direction: r2
+	});
 	test.save(function(err, test) {
 	  if (err) return console.error(err);
 	  console.dir(test);
