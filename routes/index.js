@@ -107,7 +107,7 @@ var record = exports.record = function(request, reply) {
 	// Add Speak
 	r.addSpeak(whisper);
 	// Add Record
-	r.addRecord(body, params);
+	r.addRecord(params);
 	// Add Play
 	//r.addPlay('https://s3.amazonaws.com/plivocloud/Trumpet.mp3');
 
