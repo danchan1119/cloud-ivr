@@ -1,6 +1,7 @@
 var plivo = require('plivo'),
 	Hapi;
 var p = plivo.RestAPI(require('./config'));
+var Mongoose = require('mongoose');
 
 
 module.exports = function(hapi) {
