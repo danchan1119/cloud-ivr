@@ -71,7 +71,7 @@ var press = exports.press = function(request, reply) {
 		retries:1,
 		playBeep:true
 	};
-	var q1 = 'Before this call, did you know we have an I-V-R system?';
+	var q1 = 'Before this call, have you had any experience with O-R-C I-V-R system?';
 	var yes = 'Press 1 for YES';
 	var no = 'Press 2 for NO';
 	//var again = 'Please try pressing a number on your keypad again, or hangup the call.';
