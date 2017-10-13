@@ -1,6 +1,9 @@
 var Hapi = require('hapi');
-var server = new Hapi.Server(process.env.PORT, '0.0.0.0');
-
+var server = new Hapi.Server();
+server.connection({
+	host: process.env.IP || 'localhost',
+	port: process.env.PORT || 3000
+});
 
 var Mongoose = require('mongoose');
 var options = {
