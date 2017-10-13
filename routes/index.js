@@ -16,7 +16,7 @@ var call = exports.call = function(request, reply) {
 	var params = {
 		from: '+85261574234',
 		to: '+85261574234',
-		answer_url:"http://ivr-orcisurvey.rhcloud.com/init",
+		answer_url:"https://cloud-ivr.herokuapp.com/init",
 		answer_method: "GET"
 	};
 
@@ -31,7 +31,7 @@ var init = exports.init = function(request, reply) {
 
 	var welcome = 'Hello! This is O-R-C I-V-R system, you have been invited to participate in this survey; to continue, please press a number on your telephone keypad.';
 	var params = {
-		action:"http://ivr-orcisurvey.rhcloud.com/press/",
+		action:"https://cloud-ivr.herokuapp.com/press/",
 		method:"GET",
 		timeout:7,
 		numDigits:1,
@@ -64,7 +64,7 @@ var press = exports.press = function(request, reply) {
 	var press = 'You have pressed ' + request.query.Digits;
 	//var loop = {'loop' : parseInt(request.query.Digits)};
 	var params = {
-		action:"http://ivr-orcisurvey.rhcloud.com/record/",
+		action:"https://cloud-ivr.herokuapp.com/record/",
 		method:"GET",
 		timeout:7,
 		numDigits:1,
@@ -98,7 +98,7 @@ var record = exports.record = function(request, reply) {
 	//var whisper = 'To ensure quality service, your call may be monitored or recorded.';
 	var whisper = 'One last question. What is your impression on this I-V-R system? Please speak clearly so we can record your response, press the # key when you have finished.';
 	var params = {
-		action: "http://ivr-orcisurvey.rhcloud.com/getRecording",
+		action: "https://cloud-ivr.herokuapp.com/getRecording",
 		method: "POST",
 		fileFormat: "mp3",
 		maxLength: 30,
