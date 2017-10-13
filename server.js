@@ -1,8 +1,8 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({
-	host: process.env.OPENSHIFT_NODEJS_IP || 'localhost',
-	port: process.env.OPENSHIFT_NODEJS_PORT || 3000
+	host: process.env.IP || 'localhost',
+	port: process.env.PORT || 3000
 });
 
 var Mongoose = require('mongoose');
