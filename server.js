@@ -1,7 +1,6 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({
-	host: process.env.IP || 'localhost',
 	port: process.env.PORT || 3000
 });
 
